@@ -6,13 +6,14 @@
 
 extern crate gtk;
 
-use gtk::traits::*;
-use gtk::signal::Inhibit;
+use gtk::prelude::*;
+use gtk::window;
+use gtk::button::Button;
 
 fn main() {
     gtk::init();
 
-    let window = gtk::Window::new(gtk::WindowType::TopLevel).unwrap();
+    let window = window::Window::new(gtk::WindowType::TopLevel);
 
     window.set_title("First GTK+ Program");
     window.set_border_width(10);
@@ -24,10 +25,17 @@ fn main() {
         Inhibit(true)
     });
 
-    let button = gtk::Button::new_with_label("Click me!").unwrap();
+    let button = Button::new_with_label("Click me!");
+
+    button.connect_clicked(|_| println!("Clicked!"));
 
     window.add(&button);
 
     window.show_all();
+
+    let children = window.get_children();
+    let btn: Option<Button> = children[0].downcast_ref();
+    btn.map(|b| b.clicked());
+
     gtk::main();
 }

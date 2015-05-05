@@ -20,18 +20,3 @@ gtk_3_10 = ["gtk/gtk_3_10"]
 
 [[bin]]
 name = "basic"
-
-[[bin]]
-name = "cairotest"
-
-[[bin]]
-name = "gtktest"
-
-[[bin]]
-name = "sync_widgets"
-
-[[bin]]
-name = "text_viewer"
-
-[[bin]]
-name = "treeview"
