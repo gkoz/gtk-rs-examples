@@ -34,8 +34,10 @@ fn main() {
     window.show_all();
 
     let children = window.get_children();
-    let btn: Option<Button> = children[0].downcast_ref();
-    btn.map(|b| b.clicked());
+    let btn: Result<Button, _> = children[0].clone().downcast();
+    if let Ok(btn) = btn {
+        btn.clicked();
+    }
 
     gtk::main();
 }
